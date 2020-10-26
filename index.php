@@ -24,31 +24,34 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="" method="POST">
+                <form action="insertcode.php" method="POST">
                     <div class="modal-body">
 
                         <div class="form-group">
                             <label>First Name</label>
-                            <input type="text" class="form-control" name="fname" placeholder="Enter First Name">
+                            <input type="text" class="form-control" name="fname" placeholder="Enter First Name"
+                                required>
                         </div>
                         <div class="form-group">
                             <label>Last Name</label>
-                            <input type="text" class="form-control" name="lname" placeholder="Enter Last Name">
+                            <input type="text" class="form-control" name="lname" placeholder="Enter Last Name" required>
                         </div>
                         <div class="form-group">
                             <label>Course</label>
-                            <input type="text" class="form-control" name="fname" placeholder="Enter Course Name">
+                            <input type="text" class="form-control" name="course" placeholder="Enter Course Name"
+                                required>
                         </div>
                         <div class="form-group">
                             <label>Phone Number</label>
-                            <input type="number" class="form-control" name="fname" placeholder="Enter Phone Number">
+                            <input type="number" class="form-control" name="contact" placeholder="Enter Phone Number"
+                                required>
                         </div>
 
 
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" name="insertdata" class="btn btn-primary">Add Data</button>
+                        <button type="submit" name="insertdata" class="btn btn-primary" >Add Data</button>
                     </div>
                 </form>
             </div>
