@@ -14,7 +14,7 @@
 
 
 
-    <!-- Modal -->
+    <!-- POPUP FORM -->
     <div class="modal fade" id="studentaddmodel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -38,7 +38,7 @@
                         </div>
                         <div class="form-group">
                             <label>Course</label>
-                            <input type="text" class="form-control" name="course" placeholder="Enter Course Name"
+                            <input type="text" class="form-control" name="course" onkeyup="this.value = this.value.toUpperCase();" placeholder="Enter Course Name"
                                 required>
                         </div>
                         <div class="form-group">
@@ -51,7 +51,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" name="insertdata" class="btn btn-primary" >Add Data</button>
+                        <button type="submit" name="insertdata" class="btn btn-primary">Add Data</button>
                     </div>
                 </form>
             </div>
@@ -60,6 +60,8 @@
 
     <div class="container">
         <div class="jumbotron">
+
+            <!-- Main -->
             <div class="card">
                 <h2>PHP CRUD Bootstrap Model</h2>
             </div>
@@ -68,6 +70,51 @@
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#studentaddmodel">
                         Add Data
                     </button>
+                </div>
+            </div>
+
+            <!-- Data Display -->
+            <div class="card">
+                <div class="card-body">
+                    <table class="table table-dark">
+                        <?php
+                            $connection = mysqli_connect("localhost","root","");
+                            $db = mysqli_select_db($connection,'php-crud-2');
+
+                            $query = "SELECT* FROM students";
+                            $query_run = mysqli_query($connection,$query);
+                        ?>
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">First Name</th>
+                                <th scope="col">Last Name</th>
+                                <th scope="col">Course</th>
+                                <th scope="col">Phone Number</th>
+                            </tr>
+                        </thead>
+                        <?php
+                            if($query_run){
+                             foreach($query_run as $row){
+                        ?>
+                        <tbody>
+                            <tr>
+                                <td><?php echo $row['id'];?></td>
+                                <td><?php echo $row['fname'];?></td>
+                                <td><?php echo $row['lname'];?></td>
+                                <td><?php echo $row['course'];?></td>
+                                <td><?php echo $row['contact']; ?></td>
+                            </tr>
+                        </tbody>
+                        <?php            
+                                }
+
+                                }
+                            else{
+                                echo "Data not found";
+                            }
+                        ?>
+                    </table>
                 </div>
             </div>
         </div>
