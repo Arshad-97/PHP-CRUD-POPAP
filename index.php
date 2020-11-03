@@ -71,26 +71,27 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="insertcode.php" method="POST">
+                <form action="updatecode.php" method="POST">
                     <div class="modal-body">
-
+                        
+                        <input type="hidden" name="update_id" id="update_id">
                         <div class="form-group">
                             <label>First Name</label>
-                            <input type="text" class="form-control" name="fname" placeholder="Enter First Name"
+                            <input type="text" class="form-control" id="fname" name="fname" placeholder="Enter First Name"
                                 required>
                         </div>
                         <div class="form-group">
                             <label>Last Name</label>
-                            <input type="text" class="form-control" name="lname" placeholder="Enter Last Name" required>
+                            <input type="text" class="form-control" id="lname" name="lname" placeholder="Enter Last Name" required>
                         </div>
                         <div class="form-group">
                             <label>Course</label>
-                            <input type="text" class="form-control" name="course" onkeyup="this.value = this.value.toUpperCase();" placeholder="Enter Course Name"
+                            <input type="text" class="form-control" id="course" name="course" onkeyup="this.value = this.value.toUpperCase();" placeholder="Enter Course Name"
                                 required>
                         </div>
                         <div class="form-group">
                             <label>Phone Number</label>
-                            <input type="number" class="form-control" name="contact" placeholder="Enter Phone Number"
+                            <input type="number" class="form-control" id="contact" name="contact" placeholder="Enter Phone Number"
                                 required>
                         </div>
 
@@ -98,7 +99,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" name="insertdata" class="btn btn-primary">Add Data</button>
+                        <button type="submit" name="updatedata" class="btn btn-primary">update</button>
                     </div>
                 </form>
             </div>
@@ -181,12 +182,26 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
         integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous">
-    </script>
+    </script>--
 
     <script>
         $(document).ready(function(){
             $('.editbtn').on('click', function(){
                 $('#editmodal').modal('show');
+
+                $tr = $(this).closest('tr');
+
+                var data = $tr.children("td").map(function(){
+                    return $(this).text();
+                }).get();
+
+                console.log(data);
+
+                $('#update_id').val(data[0]);
+                $('#fname').val(data[1]);
+                $('#lname').val(data[2]);
+                $('#course').val(data[3]);
+                $('#contact').val(data[4]);
             });
         });
     </script>
